@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/styles/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>Upcoming</title>
+</head>
+
+<body>
+    <header class="d-flex justify-content-between align-items-center flex-wrap">
+        <img class="logo p-3" src="./assets/resources/Logo_Amazing_Events.png" alt="">
+        <ul class="nav d-flex justify-content-around p-1">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+            </li>
+            <li class="d-flex nav-item">
+                <a class="nav-link" href="#">Upcoming Events</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./past.html">Past Events</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./contact.html">Contact</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./stats.html">Stats</a>
+            </li>
+        </ul>
+    </header>
+    <main id="app">
+        <div id="carouselExampleControls" class="carousel slide text-white" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active text-center contenedor-elem">
+                    <h1>Upcoming Events</h1>
+                </div>
+                <div class="carousel-item">
+                    <h1>Upcoming Events</h1>
+                </div>
+                <div class="carousel-item">
+                    <h1>Contact Us</h1>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="./index.html" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </a>
+            <a class="carousel-control-next" href="./past.html" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </a>
+        </div>
+        <div class="d-flex justify-content-between p-3">
+            <div id="checkboxes">
+                <template v-if="categories" v-for="category of categories">
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label" for="inlineCheckbox1">
+                            {{category}}
+                            <input class="form-check-input" v-on:change="filterEvents" v-model="cheked" type="checkbox" :value="category">
+                        </label>
+                    </div>
+                </template>
+            </div>
+            <nav class="navbar navbar-light ">
+                <form class="form-inline">
+                    <div class="input-group">
+                        <input id="search-form" type="text" class="form-control" placeholder="Event name"
+                            aria-label="Username" aria-describedby="basic-addon1" v-model="inputText" v-on:keyup="filterEvents">
+                        <div class="input-group-prepend">
+                            <!-- <button class="btn btn-outline-secondary" type="button" id="basic-addon1"
+                                v-on:click="filterByInputText">Search</button> -->
+                        </div>
+                    </div>
+                </form>
+            </nav>
+        </div>
+        <div class="d-flex justify-content-around flex-wrap text-center gap-3">
+            <template v-if="eventsFiltered.length > 0" v-for="tarj of eventsFiltered">
+                <div class="card p-2" style="width: 18rem;">
+                    <img :src="tarj.image" class="card-img-top img-main" v-bind:alt="tarj.place">
+                    <div class="card-body">
+                        <h5 class="card-title">{{tarj.name}}</h5>
+                        <p class="card-text">{{tarj.description}}</p>
+                        <div class="d-flex justify-content-between">
+                            <p>Price: {{tarj.price}}</p>
+                            <a href="./details.html" class="btn btn-primary card-btn-main">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+            </template>
+            <template v-else>
+                <h1>No result</h1>
+            </template>
+        </div>
+    </main>
+    <footer class="d-flex justify-content-between p-3">
+        <div class="d-flex justify-content-between contenedor-icons">
+            <i class="fa-brands fa-square-instagram icon"></i>
+            <i class="fa-brands fa-square-facebook icon"></i>
+            <i class="fa-brands fa-square-whatsapp icon"></i>
+        </div>
+        <p>Cohort</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./assets/javascript/upcoming.js"></script>
+</body>
+
+</html>
